@@ -176,7 +176,6 @@ class TugasLyout extends StatelessWidget {
               SizedBox(height: 20),
 
               Container(
-                height: double.infinity,
                 padding: const EdgeInsets.all(8),
                 width: double.infinity,
                 decoration: BoxDecoration(

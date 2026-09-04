@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/TUGAS/task_layout.dart';
+import 'package:flutter_application_2/TUGAS/tugas1.dart';
 // import 'package:flutter_application_2/TUGAS/tugas2.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TugasLyout(),
+      home: const TugasFlutter1(),
     );
   }
 }
