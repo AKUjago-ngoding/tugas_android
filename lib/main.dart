@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/TUGAS/tugas3.dart';
+import 'package:flutter_application_2/TUGAS/tugas4.dart';
 // import 'package:flutter_application_2/TUGAS/tugas2.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       // debugShowCheckedModeBanner: false,
-      home: const TugasFlutter3(),
+      home: const TugasFlutter4(),
     );
   }
 }
