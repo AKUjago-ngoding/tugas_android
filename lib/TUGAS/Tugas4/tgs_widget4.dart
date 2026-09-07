@@ -90,7 +90,7 @@ class TugasFlutter4 extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 12),
                       TextFormField(
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.email),
@@ -98,7 +98,7 @@ class TugasFlutter4 extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 12),
                       TextFormField(
                         decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.phone),
@@ -106,7 +106,7 @@ class TugasFlutter4 extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 12),
                       TextFormField(
                         obscureText: true, // Menyamarkan teks password
                         enableSuggestions:
@@ -118,7 +118,7 @@ class TugasFlutter4 extends StatelessWidget {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 12),
                       TextFormField(
                         obscureText:
                             true, // Menyamarkan teks konfirmasi password
