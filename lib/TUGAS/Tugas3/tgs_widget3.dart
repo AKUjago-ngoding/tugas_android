@@ -110,6 +110,68 @@ class TugasFlutter3 extends StatelessWidget {
                   ),
                 ),
               ),
+              // Menggabungkan seluruh anak widget jadi 1 pembacaan ringkas
+              Semantics(
+                container: true,
+                label: "Kartu Profil Budi", // HP cuma baca ini
+                child: Card(
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(
+                      color: const Color.fromARGB(255, 138, 138, 138),
+                      width: 2,
+                    ),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/profile/bg.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: const [
+                          Text(
+                            "JACK RAJA JAWA",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // child: Row(
+                    //   children: [
+                    //     Image.asset(
+                    //       'assets/profile/bg.png',
+                    //       fit: BoxFit.cover,
+                    //       height: 100,
+                    //       width: 100,
+                    //     ), // Otomatis dilewati
+                    //     Icon(Icons.badge,size: 32), // Otomatis dilewati
+                    //     SizedBox(width:8), // Otomatis dilewati
+                    //     Container(
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           Text('jabsdjbqdonoa',style: TextStyle(fontSize: 18)), // Otomatis dilewati // Otomatis dilewati
+                    //           SizedBox(height: 4), // Otomatis dilewati
+                    //           Text('Umur: 25 tahun',style: TextStyle(fontSize: 12)), // Otomatis dilewati
+                    //           SizedBox(height: 2), // Otomatis dilewati
+                    //           Text('Alamat: Jl. Merdeka No. 123',style: TextStyle(fontSize: 14)), // Otomatis dilewati
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

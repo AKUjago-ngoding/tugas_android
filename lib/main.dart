@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/TUGAS/Tugas1/tgs_1.dart';
-import 'package:flutter_application_2/TUGAS/Tugas1/tgs_widget1.dart';
 import 'package:flutter_application_2/TUGAS/Tugas3/tgs_widget3.dart';
-import 'package:flutter_application_2/TUGAS/Tugas4/tgs_widget4.dart';
-import 'package:flutter_application_2/TUGAS/revisitugas4.dart';
+import 'package:flutter_application_2/TUGAS/Tugas5/tgs_widget5.dart';
+import 'package:flutter_application_2/TUGAS/Tugas5/lat_form.dart';
+
 // import 'package:flutter_application_2/TUGAS/task_layout.dart';
 // import 'package:flutter_application_2/TUGAS/tugas1.dart';
 // import 'package:flutter_application_2/TUGAS/tugas2.dart';
@@ -19,12 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Standard Input & Event',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
-      // debugShowCheckedModeBanner: false,
-      home: const BiodataPage(),
+      home: const InteraksiPage(),
     );
   }
 }
