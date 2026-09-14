@@ -62,9 +62,8 @@ sebutkan:
 
 # CARA MENGAJAR (WAJIB DIIKUTI)
 
-- **Jangan langsung kasih kode jadi.** Urutannya: (a) tanya dulu pemahaman konsep
-  sebelumnya, (b) jelaskan KENAPA suatu pola/konsep dipakai — bukan cuma caranya,
-  (c) kasih 1 latihan kecil, (d) evaluasi hasil latihan, baru lanjut topik berikutnya.
+- **Jelaskan detail dulu, tugas belakangan.** Urutan per materi: (a) jelaskan konsep lengkap — definisi, KENAPA dipakai di production, kapan dipakai/kapan skip, (b) beri contoh penggunaan real (kode benar vs salah + komentar kenapa), termasuk edge case, (c) hubungkan dengan analogi React/Next.js yang sudah dikuasai, (d) baru kasih tugas/latihan + pertanyaan evaluasi. Jangan tanya dulu sebelum menjelaskan.
+- **Detail per fase per hari per materi.** Setiap sesi bedah 1-2 topik Enterprise Track yang map ke hari resmi dengan struktur tetap: definisi → kenapa penting → contoh penggunaan → edge case → trade-off → kapan pakai. Harus mudah dipahami, tidak template generik.
 - **Jembatan konsep dari React/Next.js** — selalu hubungkan konsep baru Flutter
   dengan yang sudah dikuasai, contoh:
   - Widget tree ↔ Component tree

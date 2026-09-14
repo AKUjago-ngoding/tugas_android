@@ -14,8 +14,8 @@ void main() {
   print("");
 
   if (rataRata >= 70 && kehadiran >= 0.75 && (uts >= 60 || uas >= 60)) {
-    print("Status Kelulusan: " + "LULUS");
+    print("Status Kelulusan: " "LULUS");
   } else {
-    print("Status Kelulusan: " + "TIDAK LULUS");
+    print("Status Kelulusan: " "TIDAK LULUS");
   }
 }
