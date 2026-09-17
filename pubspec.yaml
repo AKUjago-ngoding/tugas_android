@@ -38,6 +38,7 @@ dependencies:
   forui: ^0.26.0
   genui: ^0.10.2
   form_builder_validators: ^11.3.0
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:

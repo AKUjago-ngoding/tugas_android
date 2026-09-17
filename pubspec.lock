@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: fe18c7e37d5acb3b43224fa255281dec007970d6fd01f6d76fcd88ed3777a117
+      sha256: fdcd9f70f9eb80df3bc5ed0fa67280df2595fd481948df8a9ab082e6a40ad04b
       url: "https://pub.dev"
     source: hosted
-    version: "107.0.0"
+    version: "108.0.0"
   a2ui_core:
     dependency: transitive
     description:
@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: analyzer
-      sha256: f2dde9e50c23fc95b846b4ef334e98c3ae8c0effd5d2453b02fc9fb3f8939791
+      sha256: a51c769bff3b6dfbe9d60199b8606d808290702a296bef0c26a4ca391d414e46
       url: "https://pub.dev"
     source: hosted
-    version: "14.3.0"
+    version: "14.4.0"
   args:
     dependency: transitive
     description:
@@ -181,10 +181,10 @@ packages:
     dependency: transitive
     description:
       name: cupertino_ui
-      sha256: e9dfe7fac704028f8928cbe4028a0be5e8a709498e8daf8247de99e99a32aef3
+      sha256: c6747018d37d32feeeb858a1d7043831cb541460ebe1a890a995cdb8df8ea5a5
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.1.0"
   dart_style:
     dependency: transitive
     description:
@@ -297,10 +297,10 @@ packages:
     dependency: "direct dev"
     description:
       name: forui_cli
-      sha256: "91769964c515edef30923a62474fc8b164d358debb17e690ffa9367a6efd3b22"
+      sha256: "9e411731559adaf6fc96c36baafe5bb0f4f29bcb0736e7b8f8ceea74a6e6c774"
       url: "https://pub.dev"
     source: hosted
-    version: "0.26.0"
+    version: "0.26.1"
   forui_lucide:
     dependency: transitive
     description:
@@ -321,10 +321,10 @@ packages:
     dependency: "direct main"
     description:
       name: genui
-      sha256: b6030eae45860224043a91a548e5458ef93a879604a9cfcb8aeec32cc6b39277
+      sha256: e5a744aa9dfb28326fa397a1e445767e69bf7a5b99bda1e640daf6482f46c37e
       url: "https://pub.dev"
     source: hosted
-    version: "0.10.2"
+    version: "0.10.3"
   glob:
     dependency: transitive
     description:
@@ -334,41 +334,6 @@ packages:
     source: hosted
     version: "2.2.0"
   hooks:
-<<<<<<< HEAD
-=======
-    dependency: transitive
-    description:
-      name: hooks
-      sha256: eaac480a35ec0814146c2c48d96aaa829e0e44a7662c88ae84c9edf4bc35651f
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
-  html:
-    dependency: transitive
-    description:
-      name: html
-      sha256: "43b67b8f43321ab066817dfac5619596c98bb1b61624e77203bb4351785f9699"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.7"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.6.0"
-  http_parser:
-    dependency: transitive
-    description:
-      name: http_parser
-      sha256: "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.2"
-  intl:
->>>>>>> 7098ab594a3c962f964fbb0e7dbb0e235acf8684
     dependency: transitive
     description:
       name: hooks
@@ -508,10 +473,10 @@ packages:
     dependency: transitive
     description:
       name: material_ui
-      sha256: "9c0156b0cf8b3f56d365c8ffe051a720be3cae9eec55119f01e01b986ffb7101"
+      sha256: "6d056d60ce745335fcf1c726a4fc46a481a62229f202b65dbc2db5edbbabc7e2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.3.0"
   meta:
     dependency: transitive
     description:
@@ -648,6 +613,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      sha256: c3025c5534b01739267eb7d76959bbc25a6d10f6988e1c2a3036940133dd10bf
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.5"
+  shared_preferences_android:
+    dependency: transitive
+    description:
+      name: shared_preferences_android
+      sha256: "1e12aafe408aa50da80edfd679a2a6bf63ba7ab37c7fa98286da459a757b3399"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.28"
+  shared_preferences_foundation:
+    dependency: transitive
+    description:
+      name: shared_preferences_foundation
+      sha256: "2ec3934efa51e46117f23031cc141b8fc878e8525b94ec1ea4f7f586cf1b47ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.7"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      sha256: "580abfd40f415611503cae30adf626e6656dfb2f0cee8f465ece7b6defb40f2f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      sha256: "649dc798a33931919ea356c4305c2d1f81619ea6e92244070b520187b5140ef9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.2"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      sha256: c49bd060261c9a3f0ff445892695d6212ff603ef3115edbb448509d407600019
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.3"
+  shared_preferences_windows:
+    dependency: transitive
+    description:
+      name: shared_preferences_windows
+      sha256: "94ef0f72b2d71bc3e700e025db3710911bd51a71cefb65cc609dd0d9a982e3c1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -705,10 +726,10 @@ packages:
     dependency: transitive
     description:
       name: synchronized
-      sha256: "3a7b5d17422dd0f8d5c6c14feaa5a1c65638b9455f871a96f08437562c046931"
+      sha256: "397b146f97613b83d84bdccb439bc8d0f3aebb6c1d14a9641e6f24201c490b2d"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.1+2"
+    version: "3.4.2"
   term_glyph:
     dependency: transitive
     description:
@@ -857,10 +878,10 @@ packages:
     dependency: transitive
     description:
       name: video_player_win
-      sha256: a4caca55ead1eb469d10060592e7ecdcbcd4493c6e2b63e4e666ff5446c790f1
+      sha256: df03760c1498ee0c0efe2688b302c331acf46489e9821761d1adb137148502f1
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.2"
+    version: "3.3.0"
   vm_service:
     dependency: transitive
     description:
