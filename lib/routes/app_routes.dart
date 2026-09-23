@@ -18,6 +18,7 @@ import '../features/tugas/tugas_09_listview_model/tugas_09_hub.dart';
 import '../features/tugas/tugas_10_form_validation/tugas_10_form.dart';
 import '../features/tugas/tugas_11_session_auth/tugas_11_auth_hub.dart';
 import '../features/tugas/tugas_12dan13_local_storage/tugas_12dan13_hub.dart';
+import '../features/tugas/tugas_14_API_using/view/list_ghibli_screen.dart';
 
 // Import all Latihan
 import '../features/latihan/lat_01_article_ui/lat_article_screen.dart';
@@ -240,6 +241,19 @@ class AppRoutes {
       color: const Color(0xFF059669),
       tags: ['SQLite', 'sqflite', 'CRUD', 'LocalStorage', 'FutureBuilder'],
       builder: (context) => const Tugas12dan13LocalStorageWidget(),
+    ),
+    ModuleItem(
+      id: 'tugas_14_api_ghibli',
+      moduleNumber: 'Tugas 14',
+      title: 'REST API & Local Bookmark',
+      subtitle: 'Konsumsi API Studio Ghibli, Pencarian Debounce & Simpan SQLite',
+      description:
+          'Mengambil data film Studio Ghibli melalui REST API menggunakan Dio, fitur pencarian realtime dengan debounce timer, modal detail lengkap, dan fitur bookmark (simpan/hapus) ke database SQLite lokal.',
+      category: ModuleCategory.tugas,
+      icon: Icons.movie_filter_outlined,
+      color: const Color(0xFF3B82F6),
+      tags: ['REST API', 'Dio', 'Studio Ghibli', 'SQLite', 'Debounce', 'ModalBottomSheet'],
+      builder: (context) => const ListGhibliScreen(),
     ),
 
     // ================= LATIHAN =================

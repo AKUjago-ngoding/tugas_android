@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import '../models/catatan_model.dart';
 import '../services/database_helper.dart';
 
+/// ============================================================================
+/// SCREEN: DaftarCatatanScreen (Home — READ + DELETE)
+/// ============================================================================
+/// Halaman utama yang menampilkan seluruh daftar catatan dari SQLite.
+/// - FutureBuilder dipakai untuk menampilkan loading / error / data secara otomatis.
+/// - Setiap item ada tombol EDIT dan HAPUS.
+/// - FAB di pojok kanan bawah untuk TAMBAH catatan baru.
 class DaftarCatatanScreen extends StatefulWidget {
   const DaftarCatatanScreen({super.key});
 
@@ -11,20 +18,25 @@ class DaftarCatatanScreen extends StatefulWidget {
 }
 
 class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
+  // Simpan Future di variabel state agar tidak dipanggil ulang setiap rebuild
   late Future<List<CatatanModel>> _catatanFuture;
 
   @override
   void initState() {
     super.initState();
-    _muatUlang();
+    _muatUlang(); // Muat data pertama kali
   }
 
+  /// Memicu ulang query ke SQLite dan memperbarui UI
   void _muatUlang() {
     setState(() {
       _catatanFuture = DatabaseHelper().semuaCatatan();
     });
   }
 
+  // ---------------------------------------------------------------------------
+  // HAPUS: Dialog konfirmasi sebelum menghapus data
+  // ---------------------------------------------------------------------------
   void _konfirmasiHapus(CatatanModel catatan) {
     showDialog(
       context: context,
@@ -39,10 +51,12 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
         ),
         content: Text('Catatan "${catatan.judul}" akan dihapus permanen.'),
         actions: [
+          // Batal: tutup dialog saja
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: const Text('Batal'),
           ),
+          // Hapus: jalankan DELETE lalu refresh list
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
@@ -52,7 +66,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
               ),
             ),
             onPressed: () async {
-              Navigator.pop(ctx);
+              Navigator.pop(ctx); // Tutup dialog
               await DatabaseHelper().hapusCatatan(catatan.id!);
               if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
@@ -61,7 +75,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
                   backgroundColor: Colors.red,
                 ),
               );
-              _muatUlang();
+              _muatUlang(); // Refresh tampilan
             },
             child: const Text('Hapus'),
           ),
@@ -70,13 +84,18 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // NAVIGASI ke FormCatatanScreen (untuk Tambah atau Edit)
+  // ---------------------------------------------------------------------------
   Future<void> _bukaForm({CatatanModel? catatan}) async {
+    // Tunggu halaman form ditutup, lalu refresh list
     final bool? diperbarui = await Navigator.push<bool>(
       context,
       MaterialPageRoute(
         builder: (_) => FormCatatanScreen(catatan: catatan),
       ),
     );
+    // Jika form mengembalikan 'true' (artinya ada data yang disimpan), refresh
     if (diperbarui == true) {
       _muatUlang();
     }
@@ -97,10 +116,12 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
       body: FutureBuilder<List<CatatanModel>>(
         future: _catatanFuture,
         builder: (context, snapshot) {
+          // --- Status 1: Sedang loading ---
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
 
+          // --- Status 2: Terjadi error ---
           if (snapshot.hasError) {
             return Center(
               child: Text(
@@ -110,6 +131,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
             );
           }
 
+          // --- Status 3: Data kosong ---
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(
               child: Column(
@@ -128,6 +150,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
             );
           }
 
+          // --- Status 4: Data tersedia ---
           final daftarCatatan = snapshot.data!;
           return ListView.separated(
             padding: const EdgeInsets.all(16),
@@ -145,6 +168,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
                     horizontal: 16,
                     vertical: 8,
                   ),
+                  // Nomor urut sebagai leading
                   leading: CircleAvatar(
                     backgroundColor: const Color(0xFF4F46E5),
                     child: Text(
@@ -189,11 +213,13 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      // Tombol EDIT
                       IconButton(
                         tooltip: 'Edit',
                         onPressed: () => _bukaForm(catatan: catatan),
                         icon: const Icon(Icons.edit, color: Color(0xFF4F46E5)),
                       ),
+                      // Tombol HAPUS
                       IconButton(
                         tooltip: 'Hapus',
                         onPressed: () => _konfirmasiHapus(catatan),
@@ -207,6 +233,7 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
           );
         },
       ),
+      // FAB untuk TAMBAH catatan baru
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: const Color(0xFF4F46E5),
         foregroundColor: Colors.white,
@@ -218,7 +245,17 @@ class _DaftarCatatanScreenState extends State<DaftarCatatanScreen> {
   }
 }
 
+/// ============================================================================
+/// SCREEN: FormCatatanScreen (CREATE & UPDATE)
+/// ============================================================================
+/// Satu form yang bisa dipakai untuk DUA keperluan:
+/// - [catatan] == null  → mode TAMBAH (Create)
+/// - [catatan] != null  → mode EDIT (Update), field sudah terisi data lama
+///
+/// Setelah simpan, halaman di-pop dengan nilai `true` agar DaftarCatatanScreen
+/// tahu perlu me-refresh listnya.
 class FormCatatanScreen extends StatefulWidget {
+  /// Jika null = mode tambah, jika ada isinya = mode edit
   final CatatanModel? catatan;
 
   const FormCatatanScreen({super.key, this.catatan});
@@ -232,13 +269,15 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
   late final TextEditingController _judulCtrl;
   late final TextEditingController _isiCtrl;
 
-  bool _isSaving = false;
+  bool _isSaving = false; // Tampilkan loading saat proses simpan
 
+  // Apakah sedang mode edit?
   bool get _modeEdit => widget.catatan != null;
 
   @override
   void initState() {
     super.initState();
+    // Jika mode edit, isi controller dengan data yang ada
     _judulCtrl = TextEditingController(text: widget.catatan?.judul ?? '');
     _isiCtrl = TextEditingController(text: widget.catatan?.isi ?? '');
   }
@@ -250,11 +289,16 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
     super.dispose();
   }
 
+  // ---------------------------------------------------------------------------
+  // SIMPAN: Panggil INSERT atau UPDATE sesuai mode
+  // ---------------------------------------------------------------------------
   Future<void> _simpan() async {
+    // Validasi form terlebih dahulu
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isSaving = true);
 
+    // Buat objek catatan dari input pengguna
     final now = DateTime.now();
     final tanggalStr =
         '${now.day.toString().padLeft(2, '0')}/'
@@ -263,7 +307,7 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
         '${now.minute.toString().padLeft(2, '0')}';
 
     final CatatanModel dataBaru = CatatanModel(
-      id: widget.catatan?.id,
+      id: widget.catatan?.id, // Null jika tambah, ada nilai jika edit
       judul: _judulCtrl.text.trim(),
       isi: _isiCtrl.text.trim(),
       tanggal: tanggalStr,
@@ -271,9 +315,11 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
 
     bool sukses;
     if (_modeEdit) {
+      // UPDATE: perbarui baris yang sudah ada berdasarkan ID
       final rowsAffected = await DatabaseHelper().updateCatatan(dataBaru);
       sukses = rowsAffected > 0;
     } else {
+      // INSERT: tambah baris baru, kembalikan ID baru (> 0 = sukses)
       final newId = await DatabaseHelper().tambahCatatan(dataBaru);
       sukses = newId > 0;
     }
@@ -291,6 +337,7 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
     );
 
     if (sukses) {
+      // Kembalikan `true` agar halaman sebelumnya tahu perlu refresh
       Navigator.pop(context, true);
     }
   }
@@ -314,6 +361,9 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // ----------------------------------------------------------------
+              // INFO BANNER
+              // ----------------------------------------------------------------
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -340,6 +390,10 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
                 ),
               ),
               const SizedBox(height: 24),
+
+              // ----------------------------------------------------------------
+              // INPUT JUDUL
+              // ----------------------------------------------------------------
               const Text(
                 'Judul Catatan',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
@@ -363,6 +417,10 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
                 },
               ),
               const SizedBox(height: 20),
+
+              // ----------------------------------------------------------------
+              // INPUT ISI
+              // ----------------------------------------------------------------
               const Text(
                 'Isi Catatan',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
@@ -387,6 +445,10 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
                 },
               ),
               const SizedBox(height: 32),
+
+              // ----------------------------------------------------------------
+              // TOMBOL SIMPAN
+              // ----------------------------------------------------------------
               SizedBox(
                 height: 50,
                 child: ElevatedButton.icon(
@@ -397,6 +459,7 @@ class _FormCatatanScreenState extends State<FormCatatanScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
+                  // Tampilkan loading spinner saat sedang menyimpan
                   onPressed: _isSaving ? null : _simpan,
                   icon: _isSaving
                       ? const SizedBox(
