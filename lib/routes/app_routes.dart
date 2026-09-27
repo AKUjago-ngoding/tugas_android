@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/features/tugas/tugas_15_absensi/tugas_15_hub.dart';
 import '../core/models/module_item.dart';
 
 // Import all Tugas
@@ -254,6 +255,19 @@ class AppRoutes {
       color: const Color(0xFF3B82F6),
       tags: ['REST API', 'Dio', 'Studio Ghibli', 'SQLite', 'Debounce', 'ModalBottomSheet'],
       builder: (context) => const ListGhibliScreen(),
+    ),
+    ModuleItem(
+      id: 'tugas_15_api_ghibli',
+      moduleNumber: 'Tugas 15',
+      title: 'Login With API ',
+      subtitle: 'Konsumsi API PPKD dan Maps, Pencarian Debounce & Simpan SQLite',
+      description:
+          'Mengambil data login dan maps Ghibli melalui REST API menggunakan Dio, fitur pencarian realtime dengan debounce timer, modal detail lengkap, dan fitur bookmark (simpan/hapus) ke database SQLite lokal.',
+      category: ModuleCategory.tugas,
+      icon: Icons.map_sharp,
+      color: const Color(0xFF3B82F6),
+      tags: ['REST API', 'Dio', 'Studio Ghibli', 'SQLite', 'Debounce', 'ModalBottomSheet'],
+      builder: (context) => const Tugas15Hub(),
     ),
 
     // ================= LATIHAN =================
